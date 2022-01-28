@@ -1,28 +1,33 @@
-pipeline {
+#!groovy
+pipeline{
     agent any
+    //定义仓库地址
+    environment {
+            REPOSITORY = "git@github.com:NJUcdx/oasisplus-frontend.git"
+    }
 
     stages {
 
-        stage('Install Deps and build project') {
+        stage('拉取代码'){
             steps {
-                sh 'rm -rf node_modules/'
-                sh 'npm install'
-                sh 'npm run build'
+                echo "从 git:${REPOSITORY} 拉取代码"
+                //清空当前目录
+                deleteDir()
+                //拉取代码
+                git "${REPOSITORY}"
             }
         }
 
-        stage('Run Unit Tests') {
-            steps {
-                sh 'npm test'
-            }
-        }
 
-        stage('Deploy Project To Nginx') {
+        stage('远程服务器部署'){
             steps {
-                echo "Deploy project"
-                sh "cp -rp dist/* /var/www/html/"
-                sh 'service nginx restart'
-                echo "success"
+                script{
+                    echo "查看当前目录"
+                    sh 'scp -r ../oasisplus-fronted root@172.19.241.226:/root/'
+                    echo "连接后端服务器"
+                    sh "ssh -tt root@172.19.241.226 'cd /root/oasisplus-front;sh build.sh'"
+                }
+
             }
         }
 
