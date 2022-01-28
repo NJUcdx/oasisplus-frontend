@@ -25,7 +25,7 @@ pipeline{
                     echo "查看当前目录"
                     sh 'scp -r ../oasisplus-fronted root@172.19.241.226:/root/'
                     echo "连接后端服务器"
-                    sh "ssh -tt root@172.19.241.226 'cd /root/oasisplus-front;sh build.sh'"
+                    sh "ssh -tt root@172.19.241.226 'cd /root/oasisplus-fronted;sh build.sh'"
                 }
 
             }
