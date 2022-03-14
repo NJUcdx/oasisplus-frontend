@@ -6,6 +6,7 @@ pipeline{
             REPOSITORY = "git@github.com:NJUcdx/oasisplus-frontend.git"
     }
 
+
     stages {
 
         stage('拉取代码'){
