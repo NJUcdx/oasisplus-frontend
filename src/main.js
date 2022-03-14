@@ -9,6 +9,7 @@ Vue.prototype.$echarts = echarts;
 import "echarts-wordcloud";
 
 Vue.config.productionTip = false;
+
 Vue.prototype.$bus = new Vue({
   data() {
     return {
