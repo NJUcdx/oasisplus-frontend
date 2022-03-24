@@ -1,4 +1,5 @@
 #!groovy
+
 pipeline{
     agent any
     //定义仓库地址
