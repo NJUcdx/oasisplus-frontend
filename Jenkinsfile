@@ -2,7 +2,6 @@
 
 pipeline{
     agent any
-    //定义仓库地址
     environment {
             REPOSITORY = "git@github.com:NJUcdx/oasisplus-frontend.git"
     }
